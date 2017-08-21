@@ -1,11 +1,9 @@
 package org.controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import javax.validation.Valid;
 
 import org.custompropertyeditor.ApplicantNameCustomEditor;
 import org.data.Applicant;
-import org.springframework.format.datetime.joda.DateTimeFormatterFactory;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -30,18 +28,19 @@ public class HomeController {
 		// webDataBinder.setDisallowedFields(new String[]{"age"});
 		webDataBinder.registerCustomEditor(String.class, "name",
 				new ApplicantNameCustomEditor());
+		
 
 	}
 
 	@ModelAttribute
 	public void modelCollege(Model model) {
 		model.addAttribute("headerMsg",
-				"Welcome to ABC College Of Engineering !");
+				"Welcome to ABC College Of Engineering  !");
 	}
 
 	@RequestMapping(value = "/admissionSubmit", method = RequestMethod.POST)
 	public ModelAndView success(
-			@ModelAttribute("applicant") Applicant applicant,
+			@Valid @ModelAttribute("applicant") Applicant applicant,
 			BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
 			ModelAndView modelAndView = new ModelAndView("admissionForm");

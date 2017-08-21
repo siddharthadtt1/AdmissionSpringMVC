@@ -11,6 +11,8 @@
 	<br/>
 	
 	Applicant details: ${applicant} 
-
+	<br />
+	Applicant address details : ${applicant.address}
+	
 </body>
 </html>
